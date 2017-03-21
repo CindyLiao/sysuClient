@@ -347,7 +347,7 @@ public class GetService {
 	     return specs;
 	}
 	
-	public boolean registerSpecToSSH(String userid, String servicename, String xml){
+	public boolean registerSpecToSSH(String userid, String password,String servicename, String xml){
 	    try{
 				Service service=new Service();
 				Call call=(Call)service.createCall();
@@ -356,8 +356,9 @@ public class GetService {
 				call.addParameter("arg0",org.apache.axis.encoding.XMLType.XSD_STRING, javax.xml.rpc.ParameterMode.IN);
 				call.addParameter("arg1", org.apache.axis.encoding.XMLType.XSD_STRING, javax.xml.rpc.ParameterMode.IN);
 				call.addParameter("arg2", org.apache.axis.encoding.XMLType.XSD_STRING, javax.xml.rpc.ParameterMode.IN);
+				call.addParameter("arg3", org.apache.axis.encoding.XMLType.XSD_STRING, javax.xml.rpc.ParameterMode.IN);
 				call.setReturnType(org.apache.axis.encoding.XMLType.XSD_STRING);//设置返回类型  
-		        result = (String)call.invoke(new Object[]{userid, servicename, xml});
+		        result = (String)call.invoke(new Object[]{userid, password, servicename, xml});
 		        
 		        JSONArray json = JSONArray.fromObject(result); // 首先把字符串转成 JSONArray  对象
 				System.out.println(json.toString()+"="+result+"\n");
